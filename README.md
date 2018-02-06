@@ -5,7 +5,7 @@ Wikipedia definition: "Cumulative incidence is defined as the probability that a
 
 Future steps:
 
-* Host dataset the function pulls from in some cloud server or something similar
+* Host data in some cloud server
 
 * Update with 2017 data
 
