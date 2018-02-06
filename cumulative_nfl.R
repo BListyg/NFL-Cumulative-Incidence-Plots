@@ -1,12 +1,17 @@
+#Reading in data in this repo
 nfl_data = read.csv("updated_nfl_data20180113.csv", header = T, stringsAsFactors = FALSE)
 
+#Cleaning column name text, columns have "nfl_data." before the variable names and I have to get rid of it for the function to run
 colnames(nfl_data) = gsub("nfl_data.","",colnames(nfl_data))
 
+#Initializing function
+#Takes an NFL teams 3 word abbreviation 
+#and a data they played
 plot.nfl = function(team,date){
   
-  library(reshape2)
-  library(survminer)
-  library(cmprsk)
+  library(reshape2) #Helps shape data apporpriately 
+  library(survminer) #Biostats package for plotting cumulative incidence model objects
+  library(cmprsk) #the package that does the plotting
   
   
   
@@ -14,6 +19,8 @@ plot.nfl = function(team,date){
   subset = nfl_data[which(as.character(nfl_data$posteam)==team & 
                           as.character(nfl_data$ï..Date) == date),]
   
+  #If you enter a team / date combo that doesn't exist, this is returned
+  #I've had R crash when this wasn't included
   if(nrow(subset)<2){return("Team did not play on selected date.")}
   
   else if(nrow(subset)>2){
@@ -34,5 +41,8 @@ plot.nfl = function(team,date){
 }
 }
 
+#Example of what plot looks like
+#RiseUp
+#GoFalcons
 plot.nfl(team = "ATL", date = "2016-12-24")
 
